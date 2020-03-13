@@ -6,14 +6,18 @@ import {appId, secret} from './key'
 export const translate = (word) => {
   const salt = Math.random()
   const sign = md5(appId + word + salt + secret)
+  let from, to
+
+  if (/[a-zA-Z]/.test(word[0])) {
+    from = 'en'
+    to = 'zh'
+  } else {
+    from = 'zh'
+    to = 'en'
+  }
 
   const query: string = querystring.stringify({
-    q: word,
-    from: 'en',
-    to: 'zh',
-    appid: appId,
-    salt,
-    sign
+    q: word, appid: appId, from, to, salt, sign
   })
 
   const options = {
