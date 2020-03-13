@@ -48,7 +48,9 @@ export const translate = (word) => {
         console.error(object.error_msg)
         process.exit(2)
       } else {
-        console.log(object.trans_result[0].dst)
+        object.trans_result.map(obj => {
+          console.log(obj.dst)
+        })
         process.exit(0)
       }
     })
