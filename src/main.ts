@@ -23,17 +23,35 @@ export const translate = (word) => {
     method: 'GET'
   }
 
-  const req = https.request(options, (res) => {
-    console.log('状态码:', res.statusCode)
-    console.log('请求头:', res.headers)
+  const request = https.request(options, (response) => {
+    let chunks = []
+    response.on('data', (chunk) => {
+      chunks.push(chunk)
+    })
+    response.on('end', () => {
+      const string = Buffer.concat(chunks).toString()
+      type BaiduResult = {
+        error_code?: string
+        error_msg?: string
+        from: string
+        to: string
+        trans_result: { src: string; dst: string }[]
+      }
+      const object: BaiduResult = JSON.parse(string)
 
-    res.on('data', (d) => {
-      process.stdout.write(d)
+      // 报错
+      if (object.error_code) {
+        console.error(object.error_msg)
+        process.exit(2)
+      } else {
+        console.log(object.trans_result[0].dst)
+        process.exit(0)
+      }
     })
   })
 
-  req.on('error', (e) => {
+  request.on('error', (e) => {
     console.error(e)
   })
-  req.end()
+  request.end()
 }
