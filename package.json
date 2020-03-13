@@ -8,6 +8,9 @@
   "scripts": {
     "start": "ts-node-dev src/cli.ts"
   },
+  "files": [
+    "dist/**/*.,js"
+  ],
   "repository": "git@github.com:Haixiang6123/node-dict.git",
   "author": "Haixiang <haixiang6123@gmail.com>",
   "license": "MIT",
