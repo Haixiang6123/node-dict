@@ -3,7 +3,7 @@ import * as querystring from 'querystring'
 import md5 = require('md5')
 import {appId, secret} from './key'
 
-export const translate = (word) => {
+export const translate = (word: string) => {
   const salt = Math.random()
   const sign = md5(appId + word + salt + secret)
   let from, to
@@ -28,8 +28,8 @@ export const translate = (word) => {
   }
 
   const request = https.request(options, (response) => {
-    let chunks = []
-    response.on('data', (chunk) => {
+    let chunks: Buffer[] = []
+    response.on('data', (chunk: Buffer) => {
       chunks.push(chunk)
     })
     response.on('end', () => {

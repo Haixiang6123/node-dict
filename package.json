@@ -2,6 +2,9 @@
   "name": "node-dict",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": {
+    "fy": "src/cli.ts"
+  },
   "scripts": {
     "start": "ts-node-dev src/cli.ts"
   },
