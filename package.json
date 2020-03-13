@@ -1,0 +1,19 @@
+{
+  "name": "node-dict",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/cli.ts"
+  },
+  "repository": "git@github.com:Haixiang6123/node-dict.git",
+  "author": "Haixiang <haixiang6123@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^4.1.1",
+    "md5": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/md5": "^2.1.33",
+    "@types/node": "^13.9.0"
+  }
+}
