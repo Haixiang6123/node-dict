@@ -1,13 +1,11 @@
-// https://fanyi-api.baidu.com/api/trans/vip/translate
 import * as https from 'https'
 import * as querystring from 'querystring'
 import md5 = require('md5')
+import {appId, secret} from './key'
 
 export const translate = (word) => {
-  const appId = '....'
-  const appSecret = '...'
   const salt = Math.random()
-  const sign = md5(appId + word + salt + appSecret)
+  const sign = md5(appId + word + salt + secret)
 
   const query: string = querystring.stringify({
     q: word,
